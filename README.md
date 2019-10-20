@@ -67,3 +67,17 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
 # alphabet-match-game-frontend
+
+
+
+
+
+
+###to do###
+- create a randomized array of choices
+- iterate over array of choices and render a button for each
+- remove letter from lettersRemaining array once a new QuestionLetter is generated
+- submit to not invoke refresh
+- update ScoreTracker component on submission of answer
+- start over/main menu routes/buttons
+- end game when lettersRemaining.length == 0

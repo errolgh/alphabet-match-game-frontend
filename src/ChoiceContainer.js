@@ -5,9 +5,7 @@ class ChoiceContainer extends React.Component {
     return(
       <form className="ui form">
         <div className="ui two column centered grid container">
-                  {/*this needs to be a form
-                    and it will not prevent default
-                    */}
+
           <div className="eight wide column">
             <button
               className="ui fluid button massive"
