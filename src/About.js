@@ -13,7 +13,6 @@ class About extends React.Component {
               Start!
             </button>
           </div>
-          <footer>Created by Errol Watson</footer>
         </React.Fragment>
     )
   }

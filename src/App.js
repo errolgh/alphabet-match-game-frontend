@@ -28,6 +28,7 @@ class App extends React.Component {
             />
           }/>
         </Switch>
+        <footer>Created by Errol Watson</footer>
       </React.Fragment>
     )
   }
