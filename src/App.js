@@ -7,11 +7,13 @@ import About from './About'
 import GameContainer from './GameContainer'
 
 import { Switch, Route} from 'react-router-dom'
+import { withRouter } from 'react-router'
 
 class App extends React.Component {
 
   handleStartGame = () => {
     console.log("attempting to start game")
+    this.props.history.push('/game')
   }
 
   render(){
@@ -31,4 +33,4 @@ class App extends React.Component {
   }
 }
 
-export default App
+export default withRouter(App)
