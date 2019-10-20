@@ -41,6 +41,15 @@ class GameContainer extends React.Component {
     })
   }
 
+  updateSelectedChoice = (event) => {
+    console.log("attempting to update choice...", event.target.value)
+  }
+
+  handleSubmit = (event) => {
+    event.preventDefault()
+    console.log("attempting to handle submit...", event.target.value)
+  }
+
   render(){
     return(
       <React.Fragment>
@@ -53,7 +62,9 @@ class GameContainer extends React.Component {
           generateQuestionLetter={this.generateQuestionLetter}
           currentLetter={this.state.currentLetter}
         />
-        <ChoiceContainer/>
+        <ChoiceContainer
+          updateSelectedChoice={this.updateSelectedChoice}
+        />
       </React.Fragment>
     )
   }
