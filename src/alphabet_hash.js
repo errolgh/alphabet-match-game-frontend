@@ -32,7 +32,7 @@ const alphabet_hash = [
   {character: "ь", name: "myakih znak (м’який знак)", implementation: "Softens the previous consonant"},
   {character: "Ю ю", name: "yoo", implementation: "You"},
   {character: "Я я", name: "yah", implementation: "Yard"},
-  {character: "\'", name: "apostrof (апостроф)", implementation: "Strengthens the following vowel"},
+  {character: "'", name: "apostrof (апостроф)", implementation: "Strengthens the following vowel"},
 ]
 
 export default alphabet_hash;
