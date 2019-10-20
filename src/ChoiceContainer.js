@@ -5,7 +5,11 @@ class ChoiceContainer extends React.Component {
     return(
       <div className="ui two column centered grid container">
         <div className="eight wide column">
-          <div className="ui fluid button massive">Choice</div>
+          <button
+            className="ui fluid button massive"
+            
+          >Choice
+          </button>
         </div>
         <div className="eight wide column">
           <div className="ui fluid button massive">Choice</div>

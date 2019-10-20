@@ -5,7 +5,7 @@ class QuestionLetter extends React.Component {
     return(
       <div className="ui centered card">
         <p id="question-letter">
-          {this.props.generateQuestionLetter()}
+        {this.props.currentLetter.character}
         </p>
       </div>
     )

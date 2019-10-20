@@ -5,7 +5,7 @@ class Title extends React.Component {
     return (
       <React.Fragment>
         <div>
-          <h1 className="title">Cyrllic Alphabet Game</h1>
+          <h1 className="title">Cyrllic Alphabet Trainer</h1>
         </div>
       </React.Fragment>
     )
