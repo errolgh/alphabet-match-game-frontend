@@ -5,7 +5,6 @@ class ScoreTracker extends React.Component {
     return(
       <React.Fragment>
         <h4>Score: {this.props.numCorrect} out of {this.props.numOfAsked}</h4>
-        <h3>Choose the correct sound for this letter:</h3>
       </React.Fragment>
     )
   }

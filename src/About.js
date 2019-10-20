@@ -4,7 +4,7 @@ class About extends React.Component {
   render(){
     return (
         <React.Fragment>
-          <p>Learn the Ukrainian Alphabet with this game!</p>
+          <h3>Learn the Ukrainian Alphabet with this game!</h3>
           <div id="start-button">
             <button
               className="ui button massive blue"

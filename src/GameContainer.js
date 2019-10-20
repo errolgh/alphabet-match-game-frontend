@@ -6,26 +6,61 @@ import ChoiceContainer from './ChoiceContainer'
 
 
 class GameContainer extends React.Component {
-
-  state = {
-    alphabetArray: alphabet_hash,
-    currentLetter: "",
-    choices: [],
-    numOfAsked: 0,
-    numCorrect: 0,
-    seenLetters: [],
+  constructor(){
+    super()
+      this.state = {
+        alphabetArray: alphabet_hash,
+        currentLetter: null,
+        choices: [],
+        numOfAsked: 0,
+        numCorrect: 0,
+        lettersRemaining: [],
+      }
   }
-  //keep state here... every other child component should receive GameContainer's props
 
-  //make a copy of the array and pop off until array.length = 0
+//maybe i should move generateQuestionLetter call back out of question letter???
 
+  // let gifArray = skyObj.data.map((gif) => {
+  //         return gif.images.downsized_large.url
+  //       })
+  //       let chosenGif = gifArray[Math.round(Math.random()*skyObj.data.length)]
+  //       this.setState({
+  //         gif: chosenGif
+
+  componentDidMount(){
+    this.setState({
+      lettersRemaining: [...alphabet_hash],
+    })
+    // let letter = this.state.alphabetArray[Math.round(Math.random()*this.state.alphabetArray.length)]
+    // this.setCurrentLetter(letter)
+  }
+
+
+  // setCurrentLetter = (letter) => {
+  //   this.setState({currentLetter: letter})
+  // }
+  //we need to update current letter once the question is mounted
+  // filterSeenLetters = () => { //or perhas just a function that will remove the elements that have been seen already... less computation
+  //   //find return values of iterators and find the best one to filter with, then you can use the generateQuestionLetter() to only return letters that do not exist in this array
+  //
+  //   //make a copy of the array and pop off until array.length = 0... LESS COMPUTATIONALLY EXPENSIVE
+  // }
+  generateChoices = () => {
+    // make a copy of the
+    //must contain this.state.currentLetter (find a way to update state and use it to add it to the array that should be exactly 6 elements long)
+  }
+  // removeBot = (bot) => {
+  //     let copyOfCurrentBots = [...this.state.yourCurrentBotArmy].filter(botObj => {
+  //       return botObj.id != bot.id
+  //     })
+  //   this.setState({yourCurrentBotArmy: copyOfCurrentBots})
+  // }
   generateQuestionLetter = () => {
-    return this.state.alphabetArray[Math.round(Math.random()*this.state.alphabetArray.length)].character
+    let randomLetterObj = this.state.alphabetArray[Math.round(Math.random()*this.state.alphabetArray.length)]
+    let randomLetter = randomLetterObj.character
+    //how to update this.state.currentLetter to randomLetterObj
+      return randomLetter
   }
-
-//game container should manage state for questionLetter, answerContainer, and scoreTracker. so break this component into its separate duties.
-
-//change all these p tags to h tags (css)
 
   render(){
     return(
@@ -34,6 +69,7 @@ class GameContainer extends React.Component {
           numCorrect={this.state.numCorrect}
           numOfAsked={this.state.numOfAsked}
         />
+        <h3>Choose the correct sound for this letter:</h3>
         <QuestionLetter
           generateQuestionLetter={this.generateQuestionLetter}
         />
