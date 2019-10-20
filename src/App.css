@@ -13,10 +13,18 @@ p {
   font-size: 2.5em;
   font-family: Helvetica;
   text-align: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 #start-button {
   text-align: center;
+}
+
+#question-letter {
+  text-align: center;
+  font-size: 13em;
+  font-family: Helvetica;
 }
 
 footer {

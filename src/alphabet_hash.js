@@ -1,4 +1,4 @@
-const alphabet = [
+const alphabet_hash = [
   {character: "А а", name: "ah", implementation: "Cat"},
   {character: "Б б", name: "beh", implementation: "Book"},
   {character: "В в", name: "weh/veh", implementation: "Vet/When*"},
@@ -29,10 +29,10 @@ const alphabet = [
   {character: "Ч ч", name: "cheh", implementation:  "Chase"},
   {character: "Ш ш", name: "shah", implementation:  "Shy"},
   {character: "Щ щ", name: "shcha", implementation:  "Strong/Fish ch*urch"},
-  {character: "ь", name: "myakih znak (м’який знак)", implementation: "Softens the previous consonant",
+  {character: "ь", name: "myakih znak (м’який знак)", implementation: "Softens the previous consonant"},
   {character: "Ю ю", name: "yoo", implementation: "You"},
   {character: "Я я", name: "yah", implementation: "Yard"},
   {character: "\'", name: "apostrof (апостроф)", implementation: "Strengthens the following vowel"},
 ]
 
-export default alphabet;
+export default alphabet_hash;
