@@ -74,10 +74,20 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/tr
 
 
 ###to do###
+- try conditional rendering for gameContainer rendering twice... this.setState() in componentDidMount() method will force a second render!
+
+- read lectures on conditional rendering syntax and procedures
+
 - create a randomized array of choices
+
 - iterate over array of choices and render a button for each
+
 - remove letter from lettersRemaining array once a new QuestionLetter is generated
-- submit to not invoke refresh
+
 - update ScoreTracker component on submission of answer
+
 - start over/main menu routes/buttons
+
 - end game when lettersRemaining.length == 0
+
+- make a redirect for path='/game?' due to fluke error on fetching alphabet_hash

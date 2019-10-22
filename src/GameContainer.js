@@ -4,50 +4,77 @@ import QuestionLetter from './QuestionLetter'
 import ScoreTracker from './ScoreTracker'
 import ChoiceContainer from './ChoiceContainer'
 
-
 class GameContainer extends React.Component {
   constructor(){
     super()
       this.state = {
-        alphabetArray: alphabet_hash,
         lettersRemaining: alphabet_hash,
         currentLetter: {},
         choices: [],
         selectedChoice: null,
         numOfAsked: 0,
         numCorrect: 0,
+        submitted: false,
       }
   }
 
-//this code is so broken rn:
   componentDidMount(){
-    //choices must be 6 elements in length and contain the correct answer (currentletter's object)
-    let letter = this.state.alphabetArray[Math.round(Math.random()*this.state.alphabetArray.length)]
-    let choices = []
-    choices.push(letter)
-    //select 5 more objects that are not included in choices array and push into choices array if not included
-    console.log(this.state.lettersRemaining)
-
-    let wrongletter = this.state.alphabetArray[Math.round(Math.random()*this.state.alphabetArray.length)]
-      if (choices.length < 6 && wrongletter !== letter) {
-        choices.push(wrongletter)
-        let copyOfLettersRemaining = [...this.state.lettersRemaining].filter(leftLetter => {
-          return !this.state.choices.includes(letter)
-        })
-      }
+    let correctLetter = this.state.lettersRemaining[Math.round(Math.random()*this.state.lettersRemaining.length)]
     this.setState({
-      currentLetter: letter,
-      choices: choices
+      currentLetter: correctLetter,
+      choices: [...this.state.choices, correctLetter],
+      // lettersRemaining: filteredLetters
     })
   }
 
+    // this.setState({
+    //   lettersRemaining: filteredLetters,
+    //   currentLetter: newCurrentLetter,
+    //   choices: null,
+    // })
+
+    // if (!prevState.submitted) {
+    //   this.setState({
+    //     choices: new array of choices,
+    //     correctLetter:?,
+    //     selectedChoice: null,
+    //     numOfAsked: this.prevState.numOfAsked+1,
+    //     numCorrect: if (previous state of currentletter === correctLetter) {numCorrect+1},
+    //     submitted: false,
+    //   })
+    // }
+
+
   updateSelectedChoice = (event) => {
+    event.preventDefault()
+    this.setState({selectedChoice: event.target.value})
     console.log("attempting to update choice...", event.target.value)
   }
 
   handleSubmit = (event) => {
     event.preventDefault()
+
+    let filteredLetters = this.state.lettersRemaining.filter(letter =>
+      letter.character !== this.state.currentLetter.character)
+
+    let newCurrentLetter = filteredLetters[Math.round(Math.random()*filteredLetters.length)]
+
+    let choices = []
+    choices.push(newCurrentLetter)
+
+    let copyOfFilteredLetters = [...filteredLetters]
+
+    for (let i = 0; i < 5; i++){
+      let index = Math.round(Math.random()*copyOfFilteredLetters.length)
+      let wrongLetter = copyOfFilteredLetters[index]
+      choices.push(wrongLetter)
+      copyOfFilteredLetters.pop(index)
+    }
+    
     console.log("attempting to handle submit...", event.target.value)
+    this.setState({
+
+    })
   }
 
   render(){
@@ -64,6 +91,7 @@ class GameContainer extends React.Component {
         />
         <ChoiceContainer
           updateSelectedChoice={this.updateSelectedChoice}
+          handleSubmit={this.handleSubmit}
         />
       </React.Fragment>
     )
@@ -71,3 +99,8 @@ class GameContainer extends React.Component {
 }
 
 export default GameContainer
+
+// 1. need to add 5 more random letters object to choices array (must be a total of 6 elements)
+// 2. check to make sure that none of the letters === correctLetter
+// 3. add that letter iteratively to the choices array
+// 4. remove correctLetter from lettersRemaining (update with this.setState)

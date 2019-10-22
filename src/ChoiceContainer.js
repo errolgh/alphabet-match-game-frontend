@@ -15,8 +15,6 @@ class ChoiceContainer extends React.Component {
             </button>
           </div>
 
-
-
           <div className="eight wide column">
             <button
               className="ui fluid button massive"
@@ -61,14 +59,14 @@ class ChoiceContainer extends React.Component {
             <button
               className="ui button huge blue"
               type="submit"
-              onSubmit={(event)=>{this.props.handleSubmit(event)}}
+              onClick={(event)=>{this.props.handleSubmit(event)}}
+              
             >
               Submit
             </button>
           </div>
         </div>
       </form>
-
     )
   }
 }
