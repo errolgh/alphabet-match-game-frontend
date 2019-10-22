@@ -74,9 +74,7 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/tr
 
 
 ###to do###
-- answer needs to be a random index in choices array
-
-- remove letter from lettersRemaining array once a new QuestionLetter is generated
+- handleSubmit
 
 - update ScoreTracker component on submission of answer
 

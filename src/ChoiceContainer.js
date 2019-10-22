@@ -14,14 +14,14 @@ class ChoiceContainer extends React.Component {
             />})
           }
           <div>
-
+          {/* the button should be greyed out until a choice is made */}
             <button
-              className="ui button huge blue submit-button"
-              type="submit"
-              onClick={(event)=>{this.props.handleSubmit(event)}}
-            >
-              Submit
+            className="ui button huge blue submit-button"
+            type="submit"
+            onClick={(event)=>{this.props.handleSubmit(event)}}
+            > Submit
             </button>
+
           </div>
         </div>
       </form>
