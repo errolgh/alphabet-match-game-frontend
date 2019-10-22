@@ -29,7 +29,7 @@ class GameContainer extends React.Component {
 
     // this.setState({
     //   lettersRemaining: filteredLetters,
-    //   currentLetter: newCurrentLetter,
+    //   currentLetter: nextCurrentLetter,
     //   choices: null,
     // })
 
@@ -56,21 +56,27 @@ class GameContainer extends React.Component {
 
     let filteredLetters = this.state.lettersRemaining.filter(letter =>
       letter.character !== this.state.currentLetter.character)
+      //createds an array without the previous currentLetter
 
-    let newCurrentLetter = filteredLetters[Math.round(Math.random()*filteredLetters.length)]
+    let nextCurrentLetter = filteredLetters[Math.round(Math.random()*filteredLetters.length)]
+    //generates a new currentLetter
 
     let choices = []
-    choices.push(newCurrentLetter)
+    choices.push(nextCurrentLetter)
+    // an array of choices with the next currentLetter
 
     let copyOfFilteredLetters = [...filteredLetters]
+    // a copy of the array so we can pull new wrongAnswer (5)
 
-    for (let i = 0; i < 5; i++){
+    for (let i = 0; i < 5; i++) {
       let index = Math.round(Math.random()*copyOfFilteredLetters.length)
-      let wrongLetter = copyOfFilteredLetters[index]
-      choices.push(wrongLetter)
+      let wrongAnswer = copyOfFilteredLetters[index]
+      choices.push(wrongAnswer)
       copyOfFilteredLetters.pop(index)
     }
-    
+
+    console.log("array of 6 choices: ", choices)
+
     console.log("attempting to handle submit...", event.target.value)
     this.setState({
 
