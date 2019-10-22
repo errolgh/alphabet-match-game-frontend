@@ -71,17 +71,14 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/tr
 
 
 ***LAST RECAP***
-correct answer is always there, but sometimes it adds an extra one (lettersRemaining wont properly update)
-condition where a letter exists in choices array crashes application
-
 
 ###to do###
-- handleSubmit
-
-- start over/main menu routes/buttons
+- main menu routes and buttons
 
 - end game when lettersRemaining.length == 0
 
 - make a redirect for path='/game?' due to fluke error on fetching alphabet_hash
 
 - GameContainer.js error from 'choices array already includes wrongAnswer' condition
+
+- CheatModal component should render all letters and remaining letters

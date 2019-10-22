@@ -3,6 +3,7 @@ import alphabet_hash from './alphabet_hash'
 import QuestionLetter from './QuestionLetter'
 import ScoreTracker from './ScoreTracker'
 import ChoiceContainer from './ChoiceContainer'
+// import CheatModal from './CheatModal'
 
 export default class GameContainer extends React.Component {
   constructor(){
@@ -14,6 +15,7 @@ export default class GameContainer extends React.Component {
         selectedChoice: null,
         numOfAsked: 0,
         numCorrect: 0,
+        //choiceSelected: false,
       }
   }
 
@@ -28,10 +30,10 @@ export default class GameContainer extends React.Component {
     let choices = []
     let copyOfFilteredLetters = [...this.state.lettersRemaining]
 
-    while (choices.length < 5) {
+     for (let i = 0; choices.length < 5; i++) {
       let index = Math.round(Math.random()*copyOfFilteredLetters.length)
       let wrongAnswer = copyOfFilteredLetters[index]
-      if (!choices.includes(wrongAnswer)) {
+      if (!choices.includes(wrongAnswer) && correctLetter !== wrongAnswer) {
           choices.push(wrongAnswer)
           copyOfFilteredLetters.pop(index)
       }
@@ -46,29 +48,30 @@ export default class GameContainer extends React.Component {
     let letterObj = alphabet_hash.find(letter => {
       return letter.implementation === event.target.value
     })
+    // console.log(event)
+    // console.log(letterObj)
     this.setState({selectedChoice: letterObj})
   }
 
-  filterChoices = (lastLetter) => {
-    console.log("filterChoices: ",lastLetter)
+  removeLastLetter = (lastLetter) => {
     let filteredLetters = this.state.lettersRemaining.filter(letter => letter.id !== lastLetter.id)
     this.setState({
       lettersRemaining: filteredLetters
     })
+    console.log("removeLastLetter: ",lastLetter)
+    console.log("lettersRemaining: ", filteredLetters)
+  }
+
+  addPoint = () => {
+    if (this.state.currentLetter === this.state.selectedChoice) {
+      this.setState({numCorrect: this.state.numCorrect + 1})
+    }
   }
 
   handleSubmit = (event) => {
     event.preventDefault()
-    //adds 1 point to correct answers:
-    if (this.state.currentLetter === this.state.selectedChoice) {
-      this.setState({numCorrect: this.state.numCorrect + 1})
-    }
-    //removes the last choice
-    this.filterChoices(this.state.currentLetter)
-
-    // let nextCurrentLetter = this.state.lettersRemaining[Math.round(Math.random()*this.state.lettersRemaining.length)]
-    //   this.setState({currentLetter: nextCurrentLetter})
-
+    this.addPoint()
+    this.removeLastLetter(this.state.currentLetter)
     this.setState({
       numOfAsked: this.state.numOfAsked + 1,
       selectedChoice: null,
@@ -76,10 +79,10 @@ export default class GameContainer extends React.Component {
     })
     this.generateChocies()
   }
-
   render(){
     return(
       <React.Fragment>
+      {/* <CheatModal/> */}
         <ScoreTracker
           numCorrect={this.state.numCorrect}
           numOfAsked={this.state.numOfAsked}
@@ -99,3 +102,5 @@ export default class GameContainer extends React.Component {
     )
   }
 }
+// let nextCurrentLetter = this.state.lettersRemaining[Math.round(Math.random()*this.state.lettersRemaining.length)]
+//   this.setState({currentLetter: nextCurrentLetter})
