@@ -14,41 +14,45 @@ class GameContainer extends React.Component {
         selectedChoice: null,
         numOfAsked: 0,
         numCorrect: 0,
-        submitted: false,
       }
   }
 
   componentDidMount(){
     let correctLetter = this.state.lettersRemaining[Math.round(Math.random()*this.state.lettersRemaining.length)]
-    this.setState({
-      currentLetter: correctLetter,
-      choices: [...this.state.choices, correctLetter],
-      // lettersRemaining: filteredLetters
-    })
+    this.setState({currentLetter: correctLetter})
+    this.generateChocies(correctLetter)
+    console.log("componentDidMount()", correctLetter)
+    this.setState({choices: [...this.state.choices, correctLetter]})
   }
 
-    // this.setState({
-    //   lettersRemaining: filteredLetters,
-    //   currentLetter: nextCurrentLetter,
-    //   choices: null,
-    // })
 
-    // if (!prevState.submitted) {
-    //   this.setState({
-    //     choices: new array of choices,
-    //     correctLetter:?,
-    //     selectedChoice: null,
-    //     numOfAsked: this.prevState.numOfAsked+1,
-    //     numCorrect: if (previous state of currentletter === correctLetter) {numCorrect+1},
-    //     submitted: false,
-    //   })
-    // }
 
 
   updateSelectedChoice = (event) => {
     event.preventDefault()
     this.setState({selectedChoice: event.target.value})
     console.log("attempting to update choice...", event.target.value)
+  }
+
+  generateChocies = (correctLetter) => {
+    // event.preventDefault()
+    let filteredLetters = this.state.lettersRemaining.filter(letter =>
+      letter.character !== correctLetter)
+
+      let choices = []
+      choices.push(correctLetter)
+
+      let copyOfFilteredLetters = [... filteredLetters]
+
+      for (let i = 0; i < 5; i++) {
+        let index = Math.round(Math.random()*copyOfFilteredLetters.length)
+        let wrongAnswer = copyOfFilteredLetters[index]
+        choices.push(wrongAnswer)
+        copyOfFilteredLetters.pop(index)
+      }
+      console.log("attempting to generate choices... ", choices)
+      console.log("currentLetter is: ", correctLetter)
+      this.setState({choices: choices})
   }
 
   handleSubmit = (event) => {
@@ -82,6 +86,8 @@ class GameContainer extends React.Component {
 
     })
   }
+  //     numOfAsked: this.prevState.numOfAsked+1,
+  //     numCorrect: if (previous state of currentletter === correctLetter) {numCorrect+1},
 
   render(){
     return(

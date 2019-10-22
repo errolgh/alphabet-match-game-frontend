@@ -5,7 +5,7 @@ class ChoiceContainer extends React.Component {
     return(
       <form className="ui form">
         <div className="ui two column centered grid container">
-
+        
           <div className="eight wide column">
             <button
               className="ui fluid button massive"
@@ -60,7 +60,7 @@ class ChoiceContainer extends React.Component {
               className="ui button huge blue"
               type="submit"
               onClick={(event)=>{this.props.handleSubmit(event)}}
-              
+
             >
               Submit
             </button>
