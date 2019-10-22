@@ -71,9 +71,7 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/tr
 
 
 ***LAST RECAP***
-letters change
-remaining letters pop off
-correct answer is no longer in array of choices on UI
+correct answer is always there, but sometimes it adds an extra one (lettersRemaining wont properly update)
 condition where a letter exists in choices array crashes application
 
 

@@ -18,16 +18,16 @@ export default class GameContainer extends React.Component {
   }
 
   componentDidMount(){
-    let correctLetter = this.state.lettersRemaining[Math.round(Math.random()*this.state.lettersRemaining.length)]
-    this.setState({currentLetter: correctLetter})
-    this.generateChocies(correctLetter)
+    this.generateChocies()
   }
 
-  generateChocies = (correctLetter) => {
-    let filteredLetters = this.state.lettersRemaining.filter(letter => letter.id !== correctLetter.id)
+  generateChocies = () => {
+    let correctLetter = this.state.lettersRemaining[Math.round(Math.random()*this.state.lettersRemaining.length)]
+    this.setState({currentLetter: correctLetter})
+
     let choices = []
-    let copyOfFilteredLetters = [...filteredLetters]
-    //generates a random index every loop, adds it to the choices array, checks to make sure the letter doesnt already exist in our copyOfFilteredLetters array then removes it from that array:
+    let copyOfFilteredLetters = [...this.state.lettersRemaining]
+
     while (choices.length < 5) {
       let index = Math.round(Math.random()*copyOfFilteredLetters.length)
       let wrongAnswer = copyOfFilteredLetters[index]
@@ -36,13 +36,9 @@ export default class GameContainer extends React.Component {
           copyOfFilteredLetters.pop(index)
       }
     }
-      // adds correctLetter at a random index in the choices array
-      choices.splice(Math.round(Math.random()*copyOfFilteredLetters.length), 0, correctLetter)
-      this.setState({
-        choices: choices,
-        lettersRemaining: filteredLetters,
-        // currentLetter: correctLetter
-      })
+      let randomInt = Math.round(Math.random()*5)
+      choices.splice(randomInt, 0, correctLetter)
+      this.setState({choices: choices})
   }
 
   updateSelectedChoice = (event) => {
@@ -53,21 +49,32 @@ export default class GameContainer extends React.Component {
     this.setState({selectedChoice: letterObj})
   }
 
+  filterChoices = (lastLetter) => {
+    console.log("filterChoices: ",lastLetter)
+    let filteredLetters = this.state.lettersRemaining.filter(letter => letter.id !== lastLetter.id)
+    this.setState({
+      lettersRemaining: filteredLetters
+    })
+  }
+
   handleSubmit = (event) => {
     event.preventDefault()
     //adds 1 point to correct answers:
     if (this.state.currentLetter === this.state.selectedChoice) {
       this.setState({numCorrect: this.state.numCorrect + 1})
     }
-    this.generateChocies(this.state.currentLetter)
+    //removes the last choice
+    this.filterChoices(this.state.currentLetter)
 
-    let nextCurrentLetter = this.state.lettersRemaining[Math.round(Math.random()*this.state.lettersRemaining.length)]
-      this.setState({currentLetter: nextCurrentLetter})
+    // let nextCurrentLetter = this.state.lettersRemaining[Math.round(Math.random()*this.state.lettersRemaining.length)]
+    //   this.setState({currentLetter: nextCurrentLetter})
 
     this.setState({
       numOfAsked: this.state.numOfAsked + 1,
       selectedChoice: null,
+      choices: [],
     })
+    this.generateChocies()
   }
 
   render(){
