@@ -4,12 +4,12 @@ import QuestionLetter from './QuestionLetter'
 import ScoreTracker from './ScoreTracker'
 import ChoiceContainer from './ChoiceContainer'
 
-class GameContainer extends React.Component {
+export default class GameContainer extends React.Component {
   constructor(){
     super()
       this.state = {
         lettersRemaining: alphabet_hash,
-        currentLetter: {},
+        currentLetter: "",
         choices: [],
         selectedChoice: null,
         numOfAsked: 0,
@@ -18,51 +18,30 @@ class GameContainer extends React.Component {
   }
 
   componentDidMount(){
-    // an array of choices (length = 6) (including the correct one is generated)
     let correctLetter = this.state.lettersRemaining[Math.round(Math.random()*this.state.lettersRemaining.length)]
     this.setState({currentLetter: correctLetter})
-    // state for choices is updated on line below
     this.generateChocies(correctLetter)
   }
 
   generateChocies = (correctLetter) => {
-    // if (this.state.currentLetter) {
-    //   let nextLetter = this.state.lettersRemaining[Math.round(Math.random()*this.state.lettersRemaining.length)]
-    //   this.setState({currentLetter: nextLetter})
-    //   this.setState({currentLetter: nextLetter})
-    // }
-
-    let filteredLetters = this.state.lettersRemaining.filter(letter =>
-      letter.id !== correctLetter.id)
-
-      let choices = []
-      // choices.push(correctLetter)
-
-      let copyOfFilteredLetters = [...filteredLetters]
-
-      while (choices.length < 5) {
-        //generates a random index every loop, adds it to the choices array, checks to make sure the letter doesnt already exist in our copyOfFilteredLetters array then removes it from that array
-        let index = Math.round(Math.random()*copyOfFilteredLetters.length)
-        let wrongAnswer = copyOfFilteredLetters[index]
-        if (!choices.includes(wrongAnswer)) {
+    let filteredLetters = this.state.lettersRemaining.filter(letter => letter.id !== correctLetter.id)
+    let choices = []
+    let copyOfFilteredLetters = [...filteredLetters]
+    //generates a random index every loop, adds it to the choices array, checks to make sure the letter doesnt already exist in our copyOfFilteredLetters array then removes it from that array:
+    while (choices.length < 5) {
+      let index = Math.round(Math.random()*copyOfFilteredLetters.length)
+      let wrongAnswer = copyOfFilteredLetters[index]
+      if (!choices.includes(wrongAnswer)) {
           choices.push(wrongAnswer)
           copyOfFilteredLetters.pop(index)
-        } else {
-          //??
-          continue
-          //break
-          //yield
-          //continue
-          // (leave empty)
-        }
       }
-
-
+    }
       // adds correctLetter at a random index in the choices array
       choices.splice(Math.round(Math.random()*copyOfFilteredLetters.length), 0, correctLetter)
       this.setState({
         choices: choices,
-        lettersRemaining: filteredLetters
+        lettersRemaining: filteredLetters,
+        // currentLetter: correctLetter
       })
   }
 
@@ -72,24 +51,23 @@ class GameContainer extends React.Component {
       return letter.implementation === event.target.value
     })
     this.setState({selectedChoice: letterObj})
-    console.log("updateSelectedChoice() letterObj: ",letterObj)
   }
 
   handleSubmit = (event) => {
     event.preventDefault()
-    console.log("we are in handleSubmit")
-
+    //adds 1 point to correct answers:
     if (this.state.currentLetter === this.state.selectedChoice) {
       this.setState({numCorrect: this.state.numCorrect + 1})
     }
+    this.generateChocies(this.state.currentLetter)
+
+    let nextCurrentLetter = this.state.lettersRemaining[Math.round(Math.random()*this.state.lettersRemaining.length)]
+      this.setState({currentLetter: nextCurrentLetter})
+
     this.setState({
       numOfAsked: this.state.numOfAsked + 1,
-      currentLetter: {},
-  })
-  this.generateChocies(this.state.currentLetter)
-
-
-
+      selectedChoice: null,
+    })
   }
 
   render(){
@@ -114,5 +92,3 @@ class GameContainer extends React.Component {
     )
   }
 }
-
-export default GameContainer

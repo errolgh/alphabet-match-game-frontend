@@ -70,16 +70,20 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/tr
 
 
 
-
+***LAST RECAP***
+letters change
+remaining letters pop off
+correct answer is no longer in array of choices on UI
+condition where a letter exists in choices array crashes application
 
 
 ###to do###
 - handleSubmit
-
-- update ScoreTracker component on submission of answer
 
 - start over/main menu routes/buttons
 
 - end game when lettersRemaining.length == 0
 
 - make a redirect for path='/game?' due to fluke error on fetching alphabet_hash
+
+- GameContainer.js error from 'choices array already includes wrongAnswer' condition
