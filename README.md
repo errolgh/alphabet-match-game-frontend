@@ -74,13 +74,7 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/tr
 
 
 ###to do###
-- try conditional rendering for gameContainer rendering twice... this.setState() in componentDidMount() method will force a second render!
-
-- read lectures on conditional rendering syntax and procedures
-
-- create a randomized array of choices
-
-- iterate over array of choices and render a button for each
+- answer needs to be a random index in choices array
 
 - remove letter from lettersRemaining array once a new QuestionLetter is generated
 

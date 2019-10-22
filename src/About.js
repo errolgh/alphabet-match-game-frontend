@@ -4,13 +4,13 @@ class About extends React.Component {
   render(){
     return (
         <React.Fragment>
-          <h3>Learn the Ukrainian Alphabet with this game!</h3>
+          <h3>Learn the Ukrainian Alphabet with this phonics training game!</h3>
           <div id="start-button">
             <button
               className="ui button massive blue"
               onClick={()=>{this.props.handleStartGame()}}
               >
-              Start!
+              Begin
             </button>
           </div>
         </React.Fragment>

@@ -18,41 +18,50 @@ class GameContainer extends React.Component {
   }
 
   componentDidMount(){
+    // an array of choices (length = 6) (including the correct one is generated)
     let correctLetter = this.state.lettersRemaining[Math.round(Math.random()*this.state.lettersRemaining.length)]
     this.setState({currentLetter: correctLetter})
+    // state for choices is updated on line below
     this.generateChocies(correctLetter)
-    console.log("componentDidMount()", correctLetter)
-    this.setState({choices: [...this.state.choices, correctLetter]})
   }
 
+  generateChocies = (correctLetter) => {
+    let filteredLetters = this.state.lettersRemaining.filter(letter =>
+      letter.id !== correctLetter.id)
 
+      let choices = []
+      choices.push(correctLetter)
+
+      let copyOfFilteredLetters = [...filteredLetters]
+
+      //some of these blocks may be parsed into its own method
+      while (choices.length < 6) {
+        //generates a random index every loop, adds it to the choices array, checks to make sure the letter doesnt already exist in our copyOfFilteredLetters array then removes it from that array
+        let index = Math.round(Math.random()*copyOfFilteredLetters.length)
+        let wrongAnswer = copyOfFilteredLetters[index]
+        if (!choices.includes(wrongAnswer)) {
+          choices.push(wrongAnswer)
+          copyOfFilteredLetters.pop(index)
+        } else {
+          //??
+          continue
+          //break
+          //yield
+          //continue
+          // (leave empty)
+        }
+      }
+      this.setState({
+        choices: choices,
+        lettersRemaining: filteredLetters
+      })
+  }
 
 
   updateSelectedChoice = (event) => {
     event.preventDefault()
     this.setState({selectedChoice: event.target.value})
     console.log("attempting to update choice...", event.target.value)
-  }
-
-  generateChocies = (correctLetter) => {
-    // event.preventDefault()
-    let filteredLetters = this.state.lettersRemaining.filter(letter =>
-      letter.character !== correctLetter)
-
-      let choices = []
-      choices.push(correctLetter)
-
-      let copyOfFilteredLetters = [... filteredLetters]
-
-      for (let i = 0; i < 5; i++) {
-        let index = Math.round(Math.random()*copyOfFilteredLetters.length)
-        let wrongAnswer = copyOfFilteredLetters[index]
-        choices.push(wrongAnswer)
-        copyOfFilteredLetters.pop(index)
-      }
-      console.log("attempting to generate choices... ", choices)
-      console.log("currentLetter is: ", correctLetter)
-      this.setState({choices: choices})
   }
 
   handleSubmit = (event) => {
@@ -83,7 +92,9 @@ class GameContainer extends React.Component {
 
     console.log("attempting to handle submit...", event.target.value)
     this.setState({
-
+      //lettersRemaining
+      //numOfAsked
+      //numCorrect
     })
   }
   //     numOfAsked: this.prevState.numOfAsked+1,
@@ -96,7 +107,7 @@ class GameContainer extends React.Component {
           numCorrect={this.state.numCorrect}
           numOfAsked={this.state.numOfAsked}
         />
-        <h3>Choose the correct sound for this letter:</h3>
+        <h3>What sound does this letter make?</h3>
         <QuestionLetter
           generateQuestionLetter={this.generateQuestionLetter}
           currentLetter={this.state.currentLetter}
@@ -104,6 +115,7 @@ class GameContainer extends React.Component {
         <ChoiceContainer
           updateSelectedChoice={this.updateSelectedChoice}
           handleSubmit={this.handleSubmit}
+          choices={this.state.choices}
         />
       </React.Fragment>
     )

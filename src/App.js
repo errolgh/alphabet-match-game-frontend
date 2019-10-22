@@ -5,6 +5,7 @@ import './App.css';
 import Title from './Title'
 import About from './About'
 import GameContainer from './GameContainer'
+import Footer from './Footer'
 
 import { Switch, Route} from 'react-router-dom'
 import { withRouter } from 'react-router'
@@ -28,7 +29,7 @@ class App extends React.Component {
             />
           }/>
         </Switch>
-        <footer>Created by Errol Watson</footer>
+        <Footer/>
       </React.Fragment>
     )
   }
