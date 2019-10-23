@@ -5,7 +5,7 @@ class Choice extends React.Component {
     return(
       <div className="eight wide column">
         <button
-          className="ui fluid button massive"
+          className="ui fluid massive button"
           onClick={(event)=>{this.props.updateSelectedChoice(event)}}
           value={this.props.choice.implementation}
         >

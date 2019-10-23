@@ -16,12 +16,11 @@ export default class ChoiceContainer extends React.Component {
           <div>
           {/* the button should be greyed out until a choice is made */}
             <button
-            className="ui button huge blue submit-button"
+            className={`ui button blue submit-button huge`}
             type="submit"
             onClick={(event)=>{this.props.handleSubmit(event)}}
             > Submit
             </button>
-
           </div>
         </div>
       </form>

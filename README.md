@@ -71,14 +71,13 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/tr
 
 
 ***LAST RECAP***
-
 ###to do###
 - main menu routes and buttons
 
 - end game when lettersRemaining.length == 0
 
-- make a redirect for path='/game?' due to fluke error on fetching alphabet_hash
+- crashes when choice array already includes wrong answer
 
-- GameContainer.js error from 'choices array already includes wrongAnswer' condition
+- Letters occasionally repeat
 
 - CheatModal component should render all letters and remaining letters

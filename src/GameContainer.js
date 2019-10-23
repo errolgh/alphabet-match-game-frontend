@@ -45,21 +45,15 @@ export default class GameContainer extends React.Component {
 
   updateSelectedChoice = (event) => {
     event.preventDefault()
-    let letterObj = alphabet_hash.find(letter => {
-      return letter.implementation === event.target.value
+    let letterObj = alphabet_hash.find(letter =>  letter.implementation === event.target.value)
+    this.setState({
+      selectedChoice: letterObj,
     })
-    // console.log(event)
-    // console.log(letterObj)
-    this.setState({selectedChoice: letterObj})
   }
 
   removeLastLetter = (lastLetter) => {
     let filteredLetters = this.state.lettersRemaining.filter(letter => letter.id !== lastLetter.id)
-    this.setState({
-      lettersRemaining: filteredLetters
-    })
-    console.log("removeLastLetter: ",lastLetter)
-    console.log("lettersRemaining: ", filteredLetters)
+    this.setState({lettersRemaining: filteredLetters})
   }
 
   addPoint = () => {
@@ -102,5 +96,3 @@ export default class GameContainer extends React.Component {
     )
   }
 }
-// let nextCurrentLetter = this.state.lettersRemaining[Math.round(Math.random()*this.state.lettersRemaining.length)]
-//   this.setState({currentLetter: nextCurrentLetter})
