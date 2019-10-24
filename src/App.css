@@ -1,13 +1,15 @@
-/* .App {
-  text-align: center;
-} */
-
 body {
-  background-color: whitesmoke;
+  background-image: linear-gradient(
+    to top, #ffd500 10%, #005bbb 55%
+    );
+}
+
+.ui.card {
+  background-color: #D0CFCF;
 }
 
 .title {
-  font-size: 4.5em;
+  font-size: 4em;
   font-family: Helvetica;
   text-align: center;
   padding-top: 10px;
@@ -17,8 +19,9 @@ h3 {
   font-size: 2.5em;
   font-family: Helvetica;
   text-align: center;
-  padding-top: 20px;
+  padding-top: 10px;
   padding-bottom: 0px;
+  margin-top: 0px;
 }
 
 h4 {
@@ -27,6 +30,8 @@ h4 {
   text-align: center;
   padding-top: 5px;
   padding-bottom: 5px;
+  margin-top: 5px;
+  margin-bottom: 5px
 }
 
 h5 {
@@ -51,21 +56,6 @@ h5 {
   padding-bottom: 3px;
 }
 
-.App-logo {
-  height: 40vmin;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #09d3ac;
+#nav-component {
+  margin-bottom: 1px;
 }

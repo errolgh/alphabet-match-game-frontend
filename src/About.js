@@ -7,7 +7,7 @@ class About extends React.Component {
           <h3>Learn the Ukrainian Alphabet with this phonics training game!</h3>
           <div id="start-button">
             <button
-              className="ui button massive blue"
+              className="ui button massive green"
               onClick={()=>{this.props.handleStartGame()}}
               >
               Begin

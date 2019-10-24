@@ -2,6 +2,7 @@ import React from 'react';
 
 import './App.css';
 
+import Nav from './Nav'
 import Title from './Title'
 import About from './About'
 import GameContainer from './GameContainer'
@@ -20,6 +21,7 @@ class App extends React.Component {
   render(){
     return (
       <React.Fragment>
+        <Nav/>
         <Title/>
         <Switch>
           <Route path='/game' component={GameContainer}/>
