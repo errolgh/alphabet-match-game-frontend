@@ -75,6 +75,8 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/tr
 - end game when lettersRemaining.length == 0
 
 - crashes (this.state.lettersRemaining) occasionally unknown reason
+QuizContainer.generateChocies
+src/QuizContainer.js:42
 
 - CheatModal component should render all letters and remaining letters
 

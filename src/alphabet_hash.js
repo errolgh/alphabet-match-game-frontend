@@ -29,10 +29,10 @@ const alphabet_hash = [
   {id: 28, character: "Ч ч", name: "cheh", implementation: "\"ch\" sound in Cheer"},
   {id: 29, character: "Ш ш", name: "sheh", implementation: "\"sh\" sound in Shy"},
   {id: 30, character: "Щ щ", name: "shcha", implementation: "\"sh\" sound in Fresh and \"ch\" sound in Cheese combined"},
-  {id: 31, character: "ь", name: "myakih znak (м’який знак)", implementation: "(Softens the previous consonant)"},
+  {id: 31, character: "ь", name: "myakih znak (м’який знак)", implementation: "Softens the previous consonant"},
   {id: 32, character: "Ю ю", name: "yoo", implementation: "\"yoo\" sound in United"},
   {id: 33, character: "Я я", name: "yah", implementation: "\"yah\" sound in Yard"},
-  {id: 34, character: "'", name: "apostrof (апостроф)", implementation: "(Strengthens the following vowel)"},
+  {id: 34, character: "'", name: "apostrof (апостроф)", implementation: "Strengthens the following vowel"},
 ]
 
 export default alphabet_hash;

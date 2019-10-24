@@ -1,7 +1,5 @@
 body {
-  background-image: linear-gradient(
-    to top, #ffff33 30%, #1a88ff 60%
-    );
+background-image: linear-gradient(to top, #09203f 0%, #537895 100%);
 }
 
 .ui.card {
@@ -50,6 +48,7 @@ h5 {
   text-align: center;
   font-size: 10em;
   font-family: Helvetica;
+  margin-bottom: 20px;
 }
 
 #submit-button {
@@ -59,3 +58,15 @@ h5 {
 #nav-component {
   margin-bottom: 1px;
 }
+
+#nav-text {
+  font-family: Helvetica;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+/* body {
+background-image: linear-gradient(
+to top, #ffff33 30%, #1a88ff 60%
+);
+} */

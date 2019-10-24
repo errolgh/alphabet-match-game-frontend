@@ -29,8 +29,7 @@ export default class QuizContainer extends React.Component {
     let answerLetter = this.state.lettersRemaining[index]
     console.log("answerLetter: ", answerLetter.id)
     this.setState({currentLetter: answerLetter})
-    console.log("this.state.currentLetter after setState: ", this.state.currentLetter)
-    this.removeLastLetter(answerLetter)  //updates letters remaining
+    console.log("after setState: ", this.state.currentLetter)
 
     let choicesArray = []
     let copyOfRemainingLetters = [...this.state.lettersRemaining]
@@ -55,6 +54,7 @@ export default class QuizContainer extends React.Component {
     console.log(`${randomInt} is the index of answerLetter`)
     choicesArray.splice(randomInt, 0, answerLetter)
     this.setState({choices: choicesArray})
+    this.removeLastLetter(answerLetter)  //updates letters remaining
   }
 
   updateSelectedChoice = (event) => {
@@ -84,9 +84,10 @@ export default class QuizContainer extends React.Component {
       selectedChoice: null,
       choices: [],
     })
-    console.clear()
-    this.generateChocies()
+    // console.clear()
+    this.componentDidMount()
   }
+
   render(){
     return(
       <React.Fragment>

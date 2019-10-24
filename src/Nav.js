@@ -4,16 +4,16 @@ import { Link } from 'react-router-dom'
 export default class Nav extends React.Component {
   render(){
     return(
-      <div id="nav-component" className="ui borderless menu inverted">
+      <div id="nav-component" className="ui secondary menu">
         <Link to='/'>
         {/* add conditional for when game is not completed, warn user results will be lost */}
-          <button className="item">
+          <button id="nav-text" className="item">
             Home
           </button>
         </Link>
       <div className="right menu">
-        <button className="item">Cheat</button>
-        <button
+        <button id="nav-text" className="item">Cheat</button>
+        <button id="nav-text"
           className="item"
           onClick={()=>{this.props.resetQuiz()}}
         >
