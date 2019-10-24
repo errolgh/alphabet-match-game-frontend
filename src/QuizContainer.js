@@ -27,7 +27,7 @@ export default class QuizContainer extends React.Component {
     console.log("New answerLetter index: ", index)
     console.log("last letter in remaining bucket: ", this.state.lettersRemaining)
     let answerLetter = this.state.lettersRemaining[index]
-    console.log("answerLetter: ", answerLetter)
+    console.log("answerLetter: ", answerLetter.id)
     this.setState({currentLetter: answerLetter})
     console.log("this.state.currentLetter after setState: ", this.state.currentLetter)
     this.removeLastLetter(answerLetter)  //updates letters remaining
@@ -38,8 +38,9 @@ export default class QuizContainer extends React.Component {
     for (let i = 0; choicesArray.length < 5; i++){
       let index = Math.round(Math.random()*copyOfRemainingLetters.length)
       let wrongLetter = copyOfRemainingLetters[index]
+      console.log("number generated for random index: ", index)
 
-      if (choicesArray.includes(wrongLetter) || wrongLetter.implementation === answerLetter.implementation) {
+      if (choicesArray.includes(wrongLetter) || wrongLetter.id === answerLetter.id) {
         copyOfRemainingLetters.pop(wrongLetter)
         console.log("index for duplicate wrongLetter: ", index)
       } else {
@@ -47,7 +48,6 @@ export default class QuizContainer extends React.Component {
         copyOfRemainingLetters.pop(wrongLetter)
       }
     }
-    console.log("letters remaining random index: ", index)
     console.log(`answerLetter is "${answerLetter.character}", index: [${[index]}]`)
     console.log("wrong choices array: ", choicesArray)
 
@@ -84,6 +84,7 @@ export default class QuizContainer extends React.Component {
       selectedChoice: null,
       choices: [],
     })
+    console.clear()
     this.generateChocies()
   }
   render(){

@@ -27,3 +27,7 @@ export default class CheatModal extends React.Component {
     )
   }
 }
+
+
+// this component should render all of the alphabet in a grid
+// render the ones that you've completed in another color

@@ -74,7 +74,7 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/tr
 ###to do###
 - end game when lettersRemaining.length == 0
 
-- crashes (this.state.lettersRemaining) unknown reason
+- crashes (this.state.lettersRemaining) occasionally unknown reason
 
 - CheatModal component should render all letters and remaining letters
 

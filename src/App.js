@@ -14,6 +14,7 @@ import { withRouter } from 'react-router'
 class App extends React.Component {
 
   handleStartGame = () => {
+    console.clear()
     this.props.history.push('/quiz')
   }
 
