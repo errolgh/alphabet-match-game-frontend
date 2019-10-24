@@ -6,7 +6,6 @@ import Nav from './Nav'
 import Title from './Title'
 import Start from './Start'
 import QuizContainer from './QuizContainer'
-import Footer from './Footer'
 
 import { Switch, Route } from 'react-router-dom'
 import { withRouter } from 'react-router'
@@ -37,7 +36,6 @@ class App extends React.Component {
             />
           }/>
         </Switch>
-        <Footer/>
       </React.Fragment>
     )
   }
