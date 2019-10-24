@@ -42,6 +42,7 @@ h5 {
 
 #start-button {
   text-align: center;
+  margin-top: 200px;
 }
 
 #question-letter {
@@ -53,6 +54,9 @@ h5 {
 
 #submit-button {
   padding-bottom: 3px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 }
 
 #nav-component {

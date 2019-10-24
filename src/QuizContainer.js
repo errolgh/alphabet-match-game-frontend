@@ -23,11 +23,12 @@ export default class QuizContainer extends React.Component {
   }
 
   generateChocies = () => {
-    let index = Math.round(Math.random()*this.state.lettersRemaining.length)
-    console.log("New answerLetter index: ", index)
+    let newIndex = Math.round(Math.random()*this.state.lettersRemaining.length)
+    console.log("New answerLetter index: ", newIndex)
     console.log("last letter in remaining bucket: ", this.state.lettersRemaining)
-    let answerLetter = this.state.lettersRemaining[index]
-    console.log("answerLetter: ", answerLetter.id)
+    let answerLetter = this.state.lettersRemaining[newIndex]
+    console.log(`answerLetter is "${answerLetter.character}", index: [${[newIndex]}]`)
+    console.log("answerLetter.id: ", answerLetter.id)
     this.setState({currentLetter: answerLetter})
     console.log("after setState: ", this.state.currentLetter)
 
@@ -35,8 +36,8 @@ export default class QuizContainer extends React.Component {
     let copyOfRemainingLetters = [...this.state.lettersRemaining]
 
     for (let i = 0; choicesArray.length < 5; i++){
-      let index = Math.round(Math.random()*copyOfRemainingLetters.length)
-      let wrongLetter = copyOfRemainingLetters[index]
+      let index = Math.round(Math.random()*alphabet_hash.length)
+      let wrongLetter = alphabet_hash[index]
       console.log("number generated for random index: ", index)
 
       if (choicesArray.includes(wrongLetter) || wrongLetter.id === answerLetter.id) {
@@ -47,11 +48,10 @@ export default class QuizContainer extends React.Component {
         copyOfRemainingLetters.pop(wrongLetter)
       }
     }
-    console.log(`answerLetter is "${answerLetter.character}", index: [${[index]}]`)
     console.log("wrong choices array: ", choicesArray)
 
     let randomInt = Math.round(Math.random()*5)
-    console.log(`${randomInt} is the index of answerLetter`)
+    console.log(`answerLetter index: [${randomInt}]`)
     choicesArray.splice(randomInt, 0, answerLetter)
     this.setState({choices: choicesArray})
     this.removeLastLetter(answerLetter)  //updates letters remaining
@@ -84,7 +84,7 @@ export default class QuizContainer extends React.Component {
       selectedChoice: null,
       choices: [],
     })
-    // console.clear()
+    console.clear()
     this.componentDidMount()
   }
 

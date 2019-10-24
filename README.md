@@ -79,5 +79,3 @@ QuizContainer.generateChocies
 src/QuizContainer.js:42
 
 - CheatModal component should render all letters and remaining letters
-
-- Footer won't stay put
