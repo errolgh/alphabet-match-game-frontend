@@ -14,7 +14,6 @@ import { withRouter } from 'react-router'
 class App extends React.Component {
 
   handleStartGame = () => {
-    console.log("attempting to start game")
     this.props.history.push('/game')
   }
 

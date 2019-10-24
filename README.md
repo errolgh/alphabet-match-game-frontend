@@ -76,23 +76,10 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/tr
 
 - end game when lettersRemaining.length == 0
 
-- crashes when choice array already includes wrong answer
+- crashes when choice array already includes wrong answer (wrongLetter, AnswerLetter)
 
 - Letters occasionally repeat
 
 - CheatModal component should render all letters and remaining letters
 
 - Footer won't stay put
-
-
-{this.props.value.location.pathname === '/about' ? (
-  <React.Fragment>
-    {null}
-  </React.Fragment>)
-: (
-  <Link to='/about'>
-  {/* add conditional for when game is not completed, warn user results will be lost */}
-    <a className="item">About</a>
-  </Link>
-  )
-}

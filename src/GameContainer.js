@@ -15,7 +15,6 @@ export default class GameContainer extends React.Component {
         selectedChoice: null,
         numOfAsked: 0,
         numCorrect: 0,
-        //choiceSelected: false,
       }
   }
 
@@ -24,23 +23,38 @@ export default class GameContainer extends React.Component {
   }
 
   generateChocies = () => {
-    let answerLetter = this.state.lettersRemaining[Math.round(Math.random()*this.state.lettersRemaining.length)]
+    // console.clear()
+    let index = [Math.round(Math.random()*this.state.lettersRemaining.length)]
+    console.log("New answerLetter index: ", index)
+    console.log("last letter in remaining bucket: ", this.state.lettersRemaining)
+    let answerLetter = this.state.lettersRemaining[index]
+    console.log("answerLetter: ", answerLetter)
     this.setState({currentLetter: answerLetter})
+    this.removeLastLetter(answerLetter)  //updates letters remaining
 
-    let choices = []
-    let copyOfFilteredLetters = [...this.state.lettersRemaining]
+    let choicesArray = []
+    let copyOfRemainingLetters = [...this.state.lettersRemaining]
 
-     for (let i = 0; choices.length < 5; i++) {
-      let index = Math.round(Math.random()*copyOfFilteredLetters.length)
-      let wrongLetter = copyOfFilteredLetters[index]
-      if (!choices.includes(wrongLetter) && answerLetter !== wrongLetter) {
-          choices.push(wrongLetter)
-          copyOfFilteredLetters.pop(index)
+    for (let i = 0; choicesArray.length < 5; i++){
+      let index = Math.round(Math.random()*copyOfRemainingLetters.length)
+      let wrongLetter = copyOfRemainingLetters[index]
+
+      if (choicesArray.includes(wrongLetter) || wrongLetter.character === answerLetter.character) {
+        copyOfRemainingLetters.pop(wrongLetter)
+        console.log("index for duplicate wrongLetter: ", index)
+      } else {
+        choicesArray.push(wrongLetter)
+        copyOfRemainingLetters.pop(wrongLetter)
       }
     }
-      let randomInt = Math.round(Math.random()*5)
-      choices.splice(randomInt, 0, answerLetter)
-      this.setState({choices: choices})
+    console.log("letters remaining random index: ", index)
+    console.log(`answerLetter is "${answerLetter.character}", index: [${[index]}]`)
+    console.log("wrong choices array: ", choicesArray)
+
+    let randomInt = Math.round(Math.random()*5)
+    console.log(`${randomInt} is the index of answerLetter`)
+    choicesArray.splice(randomInt, 0, answerLetter)
+    this.setState({choices: choicesArray})
   }
 
   updateSelectedChoice = (event) => {
@@ -65,7 +79,6 @@ export default class GameContainer extends React.Component {
   handleSubmit = (event) => {
     event.preventDefault()
     this.addPoint()
-    this.removeLastLetter(this.state.currentLetter)
     this.setState({
       numOfAsked: this.state.numOfAsked + 1,
       selectedChoice: null,
@@ -83,16 +96,33 @@ export default class GameContainer extends React.Component {
         />
         <h3>What sound does this letter make?</h3>
         <QuestionLetter
-          generateQuestionLetter={this.generateQuestionLetter}
           currentLetter={this.state.currentLetter}
         />
+        {this.state.choices.length < 6 ? null : (
         <ChoiceContainer
           updateSelectedChoice={this.updateSelectedChoice}
           handleSubmit={this.handleSubmit}
           choices={this.state.choices}
-          lettersRemaining={this.state.lettersRemaining}
-        />
+        />)}
       </React.Fragment>
     )
   }
 }
+
+// let answerLetter = this.state.lettersRemaining[Math.round(Math.random()*this.state.lettersRemaining.length)]
+// this.setState({currentLetter: answerLetter})
+//
+// let choices = []
+// let copyOfFilteredLetters = [...this.state.lettersRemaining]
+//
+//  for (let i = 0; choices.length < 5; i++) {
+  //   let index = Math.round(Math.random()*copyOfFilteredLetters.length)
+  //   let wrongLetter = copyOfFilteredLetters[index]
+  //   if (!choices.includes(wrongLetter) && answerLetter !== wrongLetter) {
+    //       choices.push(wrongLetter)
+    //       copyOfFilteredLetters.pop(index)
+    //   }
+    // }
+    //   let randomInt = Math.round(Math.random()*5)
+    //   choices.splice(randomInt, 0, answerLetter)
+    //   this.setState({choices: choices})
