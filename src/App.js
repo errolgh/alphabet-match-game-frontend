@@ -4,28 +4,34 @@ import './App.css';
 
 import Nav from './Nav'
 import Title from './Title'
-import About from './About'
-import GameContainer from './GameContainer'
+import Start from './Start'
+import QuizContainer from './QuizContainer'
 import Footer from './Footer'
 
-import { Switch, Route} from 'react-router-dom'
+import { Switch, Route } from 'react-router-dom'
 import { withRouter } from 'react-router'
 
 class App extends React.Component {
 
   handleStartGame = () => {
-    this.props.history.push('/game')
+    this.props.history.push('/quiz')
+  }
+
+  resetQuiz = () => {
+    document.location.reload()
   }
 
   render(){
     return (
       <React.Fragment>
-        <Nav/>
+        <Nav
+          resetQuiz={this.resetQuiz}
+        />
         <Title/>
         <Switch>
-          <Route path='/game' component={GameContainer}/>
-          <Route path='/' render={()=>
-            <About
+          <Route path='/quiz' component={QuizContainer}/>
+          <Route exact={true} render={()=>
+            <Start
               handleStartGame={this.handleStartGame}
             />
           }/>

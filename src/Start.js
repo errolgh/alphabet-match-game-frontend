@@ -1,6 +1,6 @@
 import React from 'react'
 
-class About extends React.Component {
+class Start extends React.Component {
   render(){
     return (
         <React.Fragment>
@@ -18,4 +18,4 @@ class About extends React.Component {
   }
 }
 
-export default About
+export default Start

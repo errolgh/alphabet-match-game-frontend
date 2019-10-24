@@ -5,7 +5,7 @@ import ScoreTracker from './ScoreTracker'
 import ChoiceContainer from './ChoiceContainer'
 // import CheatModal from './CheatModal'
 
-export default class GameContainer extends React.Component {
+export default class QuizContainer extends React.Component {
   constructor(){
     super()
       this.state = {
@@ -23,13 +23,13 @@ export default class GameContainer extends React.Component {
   }
 
   generateChocies = () => {
-    // console.clear()
-    let index = [Math.round(Math.random()*this.state.lettersRemaining.length)]
+    let index = Math.round(Math.random()*this.state.lettersRemaining.length)
     console.log("New answerLetter index: ", index)
     console.log("last letter in remaining bucket: ", this.state.lettersRemaining)
     let answerLetter = this.state.lettersRemaining[index]
     console.log("answerLetter: ", answerLetter)
     this.setState({currentLetter: answerLetter})
+    console.log("this.state.currentLetter after setState: ", this.state.currentLetter)
     this.removeLastLetter(answerLetter)  //updates letters remaining
 
     let choicesArray = []
@@ -39,7 +39,7 @@ export default class GameContainer extends React.Component {
       let index = Math.round(Math.random()*copyOfRemainingLetters.length)
       let wrongLetter = copyOfRemainingLetters[index]
 
-      if (choicesArray.includes(wrongLetter) || wrongLetter.character === answerLetter.character) {
+      if (choicesArray.includes(wrongLetter) || wrongLetter.implementation === answerLetter.implementation) {
         copyOfRemainingLetters.pop(wrongLetter)
         console.log("index for duplicate wrongLetter: ", index)
       } else {

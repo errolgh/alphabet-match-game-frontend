@@ -72,13 +72,9 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/tr
 
 ***LAST RECAP***
 ###to do###
-- main menu routes and buttons
-
 - end game when lettersRemaining.length == 0
 
-- crashes when choice array already includes wrong answer (wrongLetter, AnswerLetter)
-
-- Letters occasionally repeat
+- crashes (this.state.lettersRemaining) unknown reason
 
 - CheatModal component should render all letters and remaining letters
 
