@@ -24,22 +24,22 @@ export default class GameContainer extends React.Component {
   }
 
   generateChocies = () => {
-    let correctLetter = this.state.lettersRemaining[Math.round(Math.random()*this.state.lettersRemaining.length)]
-    this.setState({currentLetter: correctLetter})
+    let answerLetter = this.state.lettersRemaining[Math.round(Math.random()*this.state.lettersRemaining.length)]
+    this.setState({currentLetter: answerLetter})
 
     let choices = []
     let copyOfFilteredLetters = [...this.state.lettersRemaining]
 
      for (let i = 0; choices.length < 5; i++) {
       let index = Math.round(Math.random()*copyOfFilteredLetters.length)
-      let wrongAnswer = copyOfFilteredLetters[index]
-      if (!choices.includes(wrongAnswer) && correctLetter !== wrongAnswer) {
-          choices.push(wrongAnswer)
+      let wrongLetter = copyOfFilteredLetters[index]
+      if (!choices.includes(wrongLetter) && answerLetter !== wrongLetter) {
+          choices.push(wrongLetter)
           copyOfFilteredLetters.pop(index)
       }
     }
       let randomInt = Math.round(Math.random()*5)
-      choices.splice(randomInt, 0, correctLetter)
+      choices.splice(randomInt, 0, answerLetter)
       this.setState({choices: choices})
   }
 
