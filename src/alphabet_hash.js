@@ -6,7 +6,7 @@ const alphabet_hash = [
   {id: 5, character: "Ґ ґ", name: "geh", implementation: "\"G\" as in Gate (rarely used)"},
   {id: 6, character: "Д д", name: "deh", implementation: "\"D\" as in Door"},
   {id: 7, character: "Е е", name: "eh", implementation: "\"eh\" sound in Red"},
-  {id: 8, character: "Є є", name: "ye", implementation: "\"Y\" as in Yes"},
+  {id: 8, character: "Є є", name: "ye", implementation: "\"Y\" sound as in Yes"},
   {id: 9, character: "Ж ж", name: "zheh", implementation: "\"zh\" sound in Measure"},
   {id: 10, character: "З з", name: "zeh", implementation: "\"Z\" as in Zoo"},
   {id: 11, character: "И и", name: "ih", implementation: "short \"I\" as in Picture (pronounced longer)"},

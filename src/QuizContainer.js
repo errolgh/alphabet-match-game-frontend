@@ -24,13 +24,8 @@ export default class QuizContainer extends React.Component {
 
   generateChocies = () => {
     let newIndex = Math.round(Math.random()*this.state.lettersRemaining.length)
-    console.log("New answerLetter index: ", newIndex)
-    console.log("last letter in remaining bucket: ", this.state.lettersRemaining)
     let answerLetter = this.state.lettersRemaining[newIndex]
-    console.log(`answerLetter is "${answerLetter.character}", index: [${[newIndex]}]`)
-    console.log("answerLetter.id: ", answerLetter.id)
     this.setState({currentLetter: answerLetter})
-    console.log("after setState: ", this.state.currentLetter)
 
     let choicesArray = []
     let copyOfRemainingLetters = [...this.state.lettersRemaining]
@@ -38,20 +33,16 @@ export default class QuizContainer extends React.Component {
     for (let i = 0; choicesArray.length < 5; i++){
       let index = Math.round(Math.random()*alphabet_hash.length)
       let wrongLetter = alphabet_hash[index]
-      console.log("number generated for random index: ", index)
 
       if (choicesArray.includes(wrongLetter) || wrongLetter.id === answerLetter.id) {
         copyOfRemainingLetters.pop(wrongLetter)
-        console.log("index for duplicate wrongLetter: ", index)
       } else {
         choicesArray.push(wrongLetter)
         copyOfRemainingLetters.pop(wrongLetter)
       }
     }
-    console.log("wrong choices array: ", choicesArray)
 
     let randomInt = Math.round(Math.random()*5)
-    console.log(`answerLetter index: [${randomInt}]`)
     choicesArray.splice(randomInt, 0, answerLetter)
     this.setState({choices: choicesArray})
     this.removeLastLetter(answerLetter)  //updates letters remaining
@@ -83,8 +74,8 @@ export default class QuizContainer extends React.Component {
       numOfAsked: this.state.numOfAsked + 1,
       selectedChoice: null,
       choices: [],
+      currentLetter: null,
     })
-    console.clear()
     this.componentDidMount()
   }
 
@@ -111,20 +102,37 @@ export default class QuizContainer extends React.Component {
   }
 }
 
-// let answerLetter = this.state.lettersRemaining[Math.round(Math.random()*this.state.lettersRemaining.length)]
-// this.setState({currentLetter: answerLetter})
+// generateChocies = () => {
+//   let newIndex = Math.round(Math.random()*this.state.lettersRemaining.length)
+//   console.log("New answerLetter index: ", newIndex)
+//   console.log("last letter in remaining bucket: ", this.state.lettersRemaining)
+//   let answerLetter = this.state.lettersRemaining[newIndex]
+//   console.log(`answerLetter is "${answerLetter.character}", index: [${[newIndex]}]`)
+//   console.log("answerLetter.id: ", answerLetter.id)
+//   this.setState({currentLetter: answerLetter})
+//   console.log("after setState: ", this.state.currentLetter)
 //
-// let choices = []
-// let copyOfFilteredLetters = [...this.state.lettersRemaining]
+//   let choicesArray = []
+//   let copyOfRemainingLetters = [...this.state.lettersRemaining]
 //
-//  for (let i = 0; choices.length < 5; i++) {
-  //   let index = Math.round(Math.random()*copyOfFilteredLetters.length)
-  //   let wrongLetter = copyOfFilteredLetters[index]
-  //   if (!choices.includes(wrongLetter) && answerLetter !== wrongLetter) {
-    //       choices.push(wrongLetter)
-    //       copyOfFilteredLetters.pop(index)
-    //   }
-    // }
-    //   let randomInt = Math.round(Math.random()*5)
-    //   choices.splice(randomInt, 0, answerLetter)
-    //   this.setState({choices: choices})
+//   for (let i = 0; choicesArray.length < 5; i++){
+//     let index = Math.round(Math.random()*alphabet_hash.length)
+//     let wrongLetter = alphabet_hash[index]
+//     console.log("number generated for random index: ", index)
+//
+//     if (choicesArray.includes(wrongLetter) || wrongLetter.id === answerLetter.id) {
+//       copyOfRemainingLetters.pop(wrongLetter)
+//       console.log("index for duplicate wrongLetter: ", index)
+//     } else {
+//       choicesArray.push(wrongLetter)
+//       copyOfRemainingLetters.pop(wrongLetter)
+//     }
+//   }
+//   console.log("wrong choices array: ", choicesArray)
+//
+//   let randomInt = Math.round(Math.random()*5)
+//   console.log(`answerLetter index: [${randomInt}]`)
+//   choicesArray.splice(randomInt, 0, answerLetter)
+//   this.setState({choices: choicesArray})
+//   this.removeLastLetter(answerLetter)  //updates letters remaining
+// }
