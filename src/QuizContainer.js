@@ -23,7 +23,7 @@ export default class QuizContainer extends React.Component {
   }
 
   generateChocies = () => {
-    let newIndex = Math.round(Math.random()*this.state.lettersRemaining.length)
+    let newIndex = Math.round(Math.random()*this.state.lettersRemaining.length - 1)
     let answerLetter = this.state.lettersRemaining[newIndex]
     this.setState({currentLetter: answerLetter})
 
