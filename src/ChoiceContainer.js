@@ -3,7 +3,7 @@ import Choice from './Choice'
 
 export default function ChoiceContainer(props){
   return(
-    <form className="ui form">
+    <form onSubmit={(event)=>{props.handleSubmit(event)}} className="ui form">
       <div className="ui two column centered grid container">
         {props.choices.map((choice) => {
           return <Choice
@@ -16,7 +16,7 @@ export default function ChoiceContainer(props){
         {/* the button should be greyed out until a choice is made */}
           <button
           className={`ui button green submit-button huge`}
-          onClick={(event)=>{props.handleSubmit(event)}}
+          type="submit"
           > Submit
           </button>
         </div>
@@ -24,3 +24,4 @@ export default function ChoiceContainer(props){
     </form>
   )
 }
+//edited to classic form
