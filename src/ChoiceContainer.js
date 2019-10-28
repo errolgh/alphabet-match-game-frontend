@@ -3,7 +3,7 @@ import Choice from './Choice'
 
 export default function ChoiceContainer(props){
   return(
-    <form onSubmit={(event)=>{props.handleSubmit(event)}} className="ui form">
+    <form onSubmit={(event)=>{props.handleSubmit(event)}} input value="submit" className="ui form">
       <div className="ui two column centered grid container">
         {props.choices.map((choice) => {
           return <Choice
@@ -25,3 +25,9 @@ export default function ChoiceContainer(props){
   )
 }
 //edited to classic form
+
+
+// <form onSubmit={handleSubmit}>
+//      <input type="text" value={query} onChange={handleChange} />
+//      <input type="submit" value="Search" />
+//    </form>

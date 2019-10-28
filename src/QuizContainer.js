@@ -33,7 +33,7 @@ export default class QuizContainer extends React.Component {
     for (let i = 0; choicesArray.length < 5; i++){
       let index = Math.round(Math.random()*alphabet_hash.length)
       let wrongLetter = alphabet_hash[index]
-
+      debugger
       if (choicesArray.includes(wrongLetter) || wrongLetter.id === answerLetter.id) {
         copyOfRemainingLetters.pop(wrongLetter)
       } else {
