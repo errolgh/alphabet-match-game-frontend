@@ -3,6 +3,7 @@ import alphabet_hash from './alphabet_hash'
 import QuestionLetter from './QuestionLetter'
 import ScoreTracker from './ScoreTracker'
 import ChoiceContainer from './ChoiceContainer'
+import Tally from './Tally'
 // import CheatModal from './CheatModal'
 
 export default class QuizContainer extends React.Component {
@@ -15,6 +16,7 @@ export default class QuizContainer extends React.Component {
         selectedChoice: null,
         numOfAsked: 0,
         numCorrect: 0,
+        wrongAnswers: [],
       }
   }
 
@@ -70,6 +72,8 @@ export default class QuizContainer extends React.Component {
   addPoint = () => {
     if (this.state.currentLetter === this.state.selectedChoice) {
       this.setState({numCorrect: this.state.numCorrect + 1})
+    } else {
+      this.setState({wrongAnswers: [...this.state.wrongAnswers, this.state.selectedChoice]})
     }
   }
 
@@ -89,20 +93,29 @@ export default class QuizContainer extends React.Component {
     return(
       <React.Fragment>
       {/* <CheatModal/> */}
-        <ScoreTracker
-          numCorrect={this.state.numCorrect}
-          numOfAsked={this.state.numOfAsked}
-        />
-        <h3>What sound does this letter make?</h3>
-        <QuestionLetter
-          currentLetter={this.state.currentLetter}
-        />
-        {this.state.choices.length < 6 ? null : (
-        <ChoiceContainer
-          updateSelectedChoice={this.updateSelectedChoice}
-          handleSubmit={this.handleSubmit}
-          choices={this.state.choices}
-        />)}
+        {
+          this.state.lettersRemaining.length === 0 ?
+          (<Tally
+            numOfAsked={this.state.numOfAsked}
+            numCorrect={this.state.numCorrect}
+          />) :
+        (<React.Fragment>
+          <ScoreTracker
+            numCorrect={this.state.numCorrect}
+            numOfAsked={this.state.numOfAsked}
+          />
+          <h3>What sound does this letter make?</h3>
+          <QuestionLetter
+            currentLetter={this.state.currentLetter}
+          />
+          {this.state.choices.length < 6 ? null :
+            (<ChoiceContainer
+              updateSelectedChoice={this.updateSelectedChoice}
+              handleSubmit={this.handleSubmit}
+              choices={this.state.choices}
+            />)}
+        </React.Fragment>)
+        }
       </React.Fragment>
     )
   }
