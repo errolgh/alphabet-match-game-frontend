@@ -3,7 +3,7 @@ import Choice from './Choice'
 
 export default function ChoiceContainer(props){
   return(
-    <form onSubmit={(event)=>{props.handleSubmit(event)}} input value="submit" className="ui form">
+    <form onSubmit={(event)=>{props.handleSubmit(event)}} value="submit" className="ui form">
       <div className="ui two column centered grid container">
         {props.choices.map((choice) => {
           return <Choice

@@ -19,10 +19,12 @@ export default class QuizContainer extends React.Component {
   }
 
   componentDidMount(){
-    this.generateChocies()
+    this.generateChoices()
   }
 
-  generateChocies = () => {
+  
+
+  generateChoices = () => {
     let newIndex = Math.round(Math.random()*this.state.lettersRemaining.length - 1)
     let answerLetter = this.state.lettersRemaining[newIndex]
     this.setState({currentLetter: answerLetter})
@@ -33,7 +35,7 @@ export default class QuizContainer extends React.Component {
     for (let i = 0; choicesArray.length < 5; i++){
       let index = Math.round(Math.random()*alphabet_hash.length)
       let wrongLetter = alphabet_hash[index]
-      debugger
+      // debugger
       if (choicesArray.includes(wrongLetter) || wrongLetter.id === answerLetter.id) {
         copyOfRemainingLetters.pop(wrongLetter)
       } else {
@@ -102,7 +104,7 @@ export default class QuizContainer extends React.Component {
   }
 }
 
-// generateChocies = () => {
+// generateChoices = () => {
 //   let newIndex = Math.round(Math.random()*this.state.lettersRemaining.length)
 //   console.log("New answerLetter index: ", newIndex)
 //   console.log("last letter in remaining bucket: ", this.state.lettersRemaining)
@@ -118,7 +120,7 @@ export default class QuizContainer extends React.Component {
 //   for (let i = 0; choicesArray.length < 5; i++){
 //     let index = Math.round(Math.random()*alphabet_hash.length)
 //     let wrongLetter = alphabet_hash[index]
-//     console.log("number generated for random index: ", index)
+//     console.log("number generated ficesandom index: ", index)
 //
 //     if (choicesArray.includes(wrongLetter) || wrongLetter.id === answerLetter.id) {
 //       copyOfRemainingLetters.pop(wrongLetter)
