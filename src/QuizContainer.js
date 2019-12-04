@@ -91,7 +91,14 @@ export default class QuizContainer extends React.Component {
       choices: [],
       currentLetter: null,
     })
+    if (this.state.lettersRemaining.length > 0){
       this.componentDidMount()
+    } else {
+      console.log("end game!")
+      document.getElementById('question-letter').remove()
+      document.getElementById('prompt').remove()
+      document.getElementsByTagName('form')[0].remove()
+    }
   }
 
   render(){
@@ -109,7 +116,7 @@ export default class QuizContainer extends React.Component {
             numCorrect={this.state.numCorrect}
             numOfAsked={this.state.numOfAsked}
           />
-          <h3>What sound does this letter make?</h3>
+          <h3 id='prompt'>What sound does this letter make?</h3>
           <QuestionLetter
             currentLetter={this.state.currentLetter}
           />
