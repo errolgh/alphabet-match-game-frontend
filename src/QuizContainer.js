@@ -34,23 +34,24 @@ export default class QuizContainer extends React.Component {
 
     //array for choice selection
     let choicesArray = []
-    let copyOfRemainingLetters = [...this.state.lettersRemaining]
+    let copyOfRemainingLetters = [...alphabet_hash]
 
     //splice random letters from entire alphabet, so long as they are not repeating, or the correct answer letter
     for (let i = 0; choicesArray.length < 5; i++){
       let index = Math.floor(Math.random()*alphabet_hash.length)
-      console.log("index: ", index)
       let wrongLetter = alphabet_hash[index]
 
       if (choicesArray.includes(wrongLetter) || wrongLetter === answerLetter) {
         copyOfRemainingLetters.pop(wrongLetter)
+        console.log("thrown out index: ", index)
       } else {
         choicesArray.push(wrongLetter)
         copyOfRemainingLetters.pop(wrongLetter)
+        console.log("used index: ", index)
       }
     }
     //splice in the correct letter at a random index in the choices array
-    let randomInt = Math.round(Math.random()*5)
+    let randomInt = Math.floor(Math.random()*5)
     choicesArray.splice(randomInt, 0, answerLetter)
     this.setState({choices: choicesArray})
     this.removeLastLetter(answerLetter)  //updates letters remaining
@@ -65,7 +66,9 @@ export default class QuizContainer extends React.Component {
   }
 
   removeLastLetter = (lastLetter) => {
+    console.log(lastLetter)
     let filteredLetters = this.state.lettersRemaining.filter(letter => letter.id !== lastLetter.id)
+    console.log(filteredLetters)
     this.setState({lettersRemaining: filteredLetters})
   }
 
@@ -73,7 +76,9 @@ export default class QuizContainer extends React.Component {
     if (this.state.currentLetter === this.state.selectedChoice) {
       this.setState({numCorrect: this.state.numCorrect + 1})
     } else {
-      this.setState({wrongAnswers: [...this.state.wrongAnswers, this.state.selectedChoice]})
+      this.setState({
+        wrongAnswers: [...this.state.wrongAnswers, this.state.selectedChoice]
+      })
     }
   }
 
@@ -86,7 +91,7 @@ export default class QuizContainer extends React.Component {
       choices: [],
       currentLetter: null,
     })
-    this.componentDidMount()
+      this.componentDidMount()
   }
 
   render(){

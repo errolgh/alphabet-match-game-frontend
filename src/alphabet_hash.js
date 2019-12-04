@@ -12,7 +12,7 @@ const alphabet_hash = [
   {id: 11, character: "И и", name: "ih", implementation: "short \"I\" as in Picture (pronounced longer)"},
   {id: 12, character: "І і", name: "ee", implementation: "\"E\" sound in Greet"},
   {id: 13, character: "Ї ї", name: "yih", implementation: "\"yih\" sound as in Year (pronounced longer)"},
-  {id: 14, character: "Й й", name: "yot", implementation: "\"yoo\" as in Youth (pronounced shorter)"},
+  {id: 14, character: "Й й", name: "yot", implementation: "The short \"yuh\" sound as in Day (pronounced shorter)"},
   {id: 15, character: "К к", name: "kah", implementation: "\"K\" as in Keep"},
   {id: 16, character: "Л л", name: "luh", implementation: "\"L\" as in Loose"},
   {id: 17, character: "М м", name: "moh", implementation: "\"M\" as in Moose"},
