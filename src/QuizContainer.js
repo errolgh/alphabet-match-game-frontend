@@ -68,7 +68,7 @@ export default class QuizContainer extends React.Component {
   removeLastLetter = (lastLetter) => {
     console.log(lastLetter)
     let filteredLetters = this.state.lettersRemaining.filter(letter => letter.id !== lastLetter.id)
-    console.log(filteredLetters)
+    console.table(filteredLetters)
     this.setState({lettersRemaining: filteredLetters})
   }
 
@@ -98,7 +98,12 @@ export default class QuizContainer extends React.Component {
       document.getElementById('question-letter').remove()
       document.getElementById('prompt').remove()
       document.getElementsByTagName('form')[0].remove()
+      this.renderResults()
     }
+  }
+
+  renderResults = (event) => {
+    console.log("in results function")
   }
 
   render(){
